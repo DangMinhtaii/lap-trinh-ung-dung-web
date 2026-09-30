@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<QuanLyNhanSu.Models.Employee>
+@{
+    ViewData["Title"] = "Danh sách nhân viên";
+}
+<h2>Danh sách nhân viên</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">+ Thêm nhân viên</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh</th>
+            <th>Địa chỉ</th>
+            <th>Phòng ban</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.LastName</td>
+                <td>@emp.FirstName</td>
+                <td>@emp.Gender</td>
+                <td>@emp.Birthday?.ToString("dd/MM/yyyy")</td>
+                <td>@emp.Address</td>
+                <td>@emp.DeptName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@emp.EmpId">Sửa</a> |
+                    <a asp-action="Delete" asp-route-id="@emp.EmpId">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

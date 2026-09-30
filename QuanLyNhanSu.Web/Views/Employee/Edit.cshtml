@@ -1,0 +1,57 @@
+﻿```cshtml
+@model QuanLyNhanSu.Models.Employee
+
+@{
+    ViewData["Title"] = "Sửa nhân viên";
+}
+
+<h2>Sửa nhân viên</h2>
+
+<form asp-action="Edit" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="EmpId" />
+
+    <div class="mb-2">
+        <label>Họ</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Tên</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Giới tính</label>
+        <select asp-for="Gender" class="form-control">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <label>Ngày sinh</label>
+        <input asp-for="Birthday" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Địa chỉ</label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Phòng ban</label>
+        <select asp-for="DeptId"
+                asp-items="ViewBag.Departments"
+                class="form-control">
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Lưu</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+
+</form>
+```

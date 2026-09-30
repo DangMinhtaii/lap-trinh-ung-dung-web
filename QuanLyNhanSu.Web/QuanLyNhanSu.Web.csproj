@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuanLyNhanSu.BLL\QuanLyNhanSu.BLL.csproj" />
+    <ProjectReference Include="..\QuanLyNhanSu.DAL\QuanLyNhanSu.DAL.csproj" />
+    <ProjectReference Include="..\QuanLyNhanSu.Models\QuanLyNhanSu.Models.csproj" />
+  </ItemGroup>
+
+</Project>
