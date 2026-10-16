@@ -1,0 +1,103 @@
+﻿@model IEnumerable<SLib.Models.Entities.Book>
+
+@{
+    ViewData["Title"] = "Quản lý sách";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Quản lý sách</h2>
+            <p class="text-muted mb-0">Quản lý thông tin sách trong thư viện</p>
+        </div>
+
+        <a asp-controller="Books"
+           asp-action="Create"
+           class="btn btn-primary">
+            + Thêm sách
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <strong>Tổng số sách: @Model.Count()</strong>
+        </div>
+
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Mã sách</th>
+                                <th>ISBN</th>
+                                <th>Tên sách</th>
+                                <th>Năm xuất bản</th>
+                                <th>Số trang</th>
+                                <th>Trạng thái</th>
+                                <th style="min-width: 160px;">Thao tác</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var sach in Model)
+                            {
+                                <tr>
+                                    <td>@sach.BookId</td>
+                                    <td>@(sach.ISBN ?? "-")</td>
+                                    <td>
+                                        <strong>@sach.Title</strong>
+
+                                        @if (!string.IsNullOrWhiteSpace(sach.Subtitle))
+                                        {
+                                            <br />
+                                            <small class="text-muted">@sach.Subtitle</small>
+                                        }
+                                    </td>
+                                    <td>@(sach.PublicationYear?.ToString() ?? "-")</td>
+                                    <td>@(sach.PageCount?.ToString() ?? "-")</td>
+                                    <td>
+                                        @if (sach.IsActive)
+                                        {
+                                            <span class="badge bg-success">
+                                                Đang hoạt động
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">
+                                                Ngừng hoạt động
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Books"
+                                           asp-action="Edit"
+                                           asp-route-id="@sach.BookId"
+                                           class="btn btn-sm btn-warning">
+                                            Sửa
+                                        </a>
+
+                                        <a asp-controller="Books"
+                                           asp-action="Delete"
+                                           asp-route-id="@sach.BookId"
+                                           class="btn btn-sm btn-danger">
+                                            Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info mb-0">
+                    Chưa có sách trong cơ sở dữ liệu.
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿
+@model SLib.Models.Entities.Book
+
+@{
+    ViewData["Title"] = "Thêm sách";
+}
+
+<div class="container mt-4">
+    <h2>Thêm sách mới</h2>
+    <p class="text-muted">Nhập thông tin sách vào thư viện.</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-controller="Books" asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="ISBN" class="form-label">Mã ISBN</label>
+                    <input asp-for="ISBN" class="form-control" />
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label">Tên sách *</label>
+                    <input asp-for="Title" class="form-control" required />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Subtitle" class="form-label">Tên phụ</label>
+                    <input asp-for="Subtitle" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="PublisherId" class="form-label">Mã nhà xuất bản</label>
+                        <input asp-for="PublisherId" type="number" class="form-control" />
+                        <small class="text-muted">Để trống nếu chưa có nhà xuất bản.</small>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LanguageId" class="form-label">Mã ngôn ngữ</label>
+                        <input asp-for="LanguageId" type="number" class="form-control" />
+                        <small class="text-muted">Để trống nếu chưa có ngôn ngữ.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="PublicationYear" class="form-label">Năm xuất bản</label>
+                        <input asp-for="PublicationYear" type="number" class="form-control" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Edition" class="form-label">Lần xuất bản</label>
+                        <input asp-for="Edition" class="form-control" />
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="PageCount" class="form-label">Số trang</label>
+                        <input asp-for="PageCount" type="number" min="1" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CoverImagePath" class="form-label">Đường dẫn ảnh bìa</label>
+                    <input asp-for="CoverImagePath" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Mô tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="IsActive" class="form-check-input" checked />
+                    <label asp-for="IsActive" class="form-check-label">Đang hoạt động</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Lưu sách</button>
+                <a asp-controller="Books" asp-action="Index" class="btn btn-secondary">Quay lại</a>
+            </form>
+        </div>
+    </div>
+</div>
